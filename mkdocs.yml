@@ -1,6 +1,6 @@
 # Reference: https://squidfunk.github.io/mkdocs-material/reference/
-site_name: <Insert Title> Write-Up
-site_author: Author Name
+site_name: SANS Holiday Hack Challenge 2025 Write-Up
+site_author: Knight
 theme:
   icon:
     # Material for MkDocs bundles several icon sets:
@@ -12,9 +12,9 @@ theme:
     # logo: fontawesome/regular/snowflake
     # logo: fontawesome/solid/sleigh
     # logo: fontawesome/solid/candy-cane
-    # logo: fontawesome/solid/tree
+    logo: fontawesome/solid/tree
     # logo: fontawesome/solid/chess-knight
-    logo: fontawesome/regular/chess-knight
+    # logo: fontawesome/regular/chess-knight
   name: material
   favicon: img/misc/knight_logo.ico
   features:
@@ -49,22 +49,22 @@ theme:
         name: Switch to dark mode
     # Palette toggle for dark mode
     - scheme: slate
-      primary: teal
-      accent: teal
+      primary: blue grey
+      accent: light blue
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
 extra:
   social:
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/<twitter_username>
-      name: Twitter
+    # - icon: fontawesome/brands/twitter
+     # link: https://twitter.com/<twitter_username>
+     # name: Twitter
     - icon: fontawesome/brands/github
-      link: https://github.com/<github_username>
+      link: https://github.com/knight-scott
       name: GitHub
-    - icon: fontawesome/brands/instagram
-      link: https://www.instagram.com/<instagram_username>
-      name: Instagram
+   # - icon: fontawesome/solid/chess-knight
+    #  link: https://www.instagram.com/<instagram_username>
+     # name: Knight
 extra_css:
   - css/extra.css
 extra_javascript:
@@ -78,7 +78,7 @@ markdown_extensions:
   - footnotes
   - def_list
   - toc:
-      permalink: ⚓︎
+      permalink: ❄️
       toc_depth: 2
   - pymdownx.details
   - pymdownx.keys
@@ -102,13 +102,35 @@ nav:
 # The 'nav' section defines the content of the sidebar navigation.
 - Welcome: 'index.md'
 - Objectives:
-  - Section 1:
-    - Objective 1: 'objectives/o1.md'
-  - Section 2:
-    - Objective 2: 'objectives/o2.md'
-    - Objective 3: 'objectives/o3.md'
-  - Section 3:
-    - Objective 4: 'objectives/o4.md'
-    - Objective 5: 'objectives/o5.md'
+  - Orientation:
+    - Holiday Hack Orientation: 'objectives/o1.md'
+  - Act 1:
+    - It's All About Defang: 'objectives/o2.md'
+    - Neighborhood Watch Bypass: 'objectives/o3.md'
+    - Santa's Gift-Tracking Service: 'objectives/o4.md'
+    - Visual Networking Thinger: 'objectives/o5.md'
+    - Visual Firewall Thinger: 'objectives/o6.md'
+    - Intro to Nmap: 'objectives/o7.md'
+    - Blob Storage Challenge in the Neighborhood: 'objectives/o8.md'
+    - Spare Key: 'objectives/o9.md/'
+    - The Open Door: 'objectives/o10.md'
+    - Owner: 'objectives/o11.md'
+  - Act 2:
+    - Retro Recovery: 'objectives/o12.md'
+    - Mail Detective: 'objectives/o13.md'
+    - IDORable Bistro: 'objectives/o14.md'
+    - Dosis Network Down: 'objectives/o15.md'
+    - Rogue Gnome Identity Provider: 'objectives/o16.md'
+    - Quantgnome Leap: 'objectives/o17.md'
+    - Going in Reverse: 'objectives/o18.md'
+  - Act 3:
+    - Gnome Tea: 'objectives/o19.md'
+    - Hack-a-Gnome: 'objectives/o20.md'
+    - Snowcat RCE & Priv Esc: 'objectives/o21.md'
+    - Schrödinger's Scope: 'objectives/o22.md'
+    - Find and Shutdown Frosty's Snowglobe Machine: 'objectives/o23.md'
+    - On the Wire: 'objectives/o23.md'
+    - Free Ski: 'objectives/o24.md'
+    - Snowblind Ambush: 'objectives/o25.md'
 - Extras:
   - Easter Eggs: 'easter_eggs.md'

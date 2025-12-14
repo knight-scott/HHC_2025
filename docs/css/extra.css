@@ -90,3 +90,8 @@ article.md-content__inner {
     -webkit-mask-image: var(--md-admonition-icon--text);
     mask-image: var(--md-admonition-icon--text);
 }
+
+/* Color Icon test */
+.red {
+    color: #EE0F0F;
+}
