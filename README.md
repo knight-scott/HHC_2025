@@ -4,11 +4,11 @@
 
 ---
 
-This is my 2025 write-up for the SANS and Counter Hack *Holiday Hack Challenge* based on the template I've modified from [crahan's](https://github.com/crahan) [HolidayHackChallengeTemplate](https://github.com/crahan/HolidayHackChallengeTemplate/). It's based on [MkDocs](https://www.mkdocs.org) and the [MkDocs Material](https://squidfunk.github.io/mkdocs-material/) theme. 
+This is my attempt at a write-up for the 2025 SANS and Counter Hack *Holiday Hack Challenge*. This document is based on the template I've modified from [crahan's](https://github.com/crahan) [HolidayHackChallengeTemplate](https://github.com/crahan/HolidayHackChallengeTemplate/) and uses [MkDocs](https://www.mkdocs.org) and the [MkDocs Material](https://squidfunk.github.io/mkdocs-material/) theme. 
 
-The templated version available on my [GitHub](https://github.com/knight-scott) [here](https://github.com/knight-scott/WriteUpTemplate) with instructions on using it yourself.
+The templated version is also available on my [GitHub](https://github.com/knight-scott) [here](https://github.com/knight-scott/WriteUpTemplate) with instructions on using it yourself.
 
-Examples of reports made with this template and their repositories can be found at:
+Examples of reports I've made with this template and their repositories can be found at:
 
 | Report website                                                                 | GitHub repository                                              |
 | ------------------------------------------------------------------------------ | -------------------------------------------------------------- |

@@ -42,8 +42,8 @@ theme:
     # green, light green, lime, yellow, amber, orange, and deep orange.
     # Palette toggle for light mode
     - scheme: default
-      primary: teal
-      accent: teal
+      primary: light blue
+      accent: blue grey
       toggle:
         icon: material/weather-night 
         name: Switch to dark mode
