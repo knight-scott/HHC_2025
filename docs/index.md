@@ -30,6 +30,9 @@ Act 3:
 !!! info "Act 3"
     The Gnomes want to transform the neighborhood so that it’s frozen solid year-round, an environmental disaster. But who is the mastermind behind the Gnomes’ wickedness?
 
+??? note "Counter Hack Crew"
+    This year's competition introduced the Counter Hack team and some of their interests with each challenge. This was a fun and personal touch that I enjoyed. In the interest of space and time, I have taken each of the intros and presented them on a seperate [page](ch_crew.md), leaving just the challenge text for each walk-through. 
+
 ??? tip "Navigation tip"
     Depending on the challenge, there can be quite a bit of information to read through. To make things a little easier, you can use ++"P"++ or ++","++ to go to the previous section, ++"N"++ or ++"."++ to navigate to the next section, and ++"S"++, ++"F"++, or ++"/"++ to open up the search dialog.
 
