@@ -129,8 +129,9 @@ nav:
     - Snowcat RCE & Priv Esc: 'objectives/o21.md'
     - Schrödinger's Scope: 'objectives/o22.md'
     - Find and Shutdown Frosty's Snowglobe Machine: 'objectives/o23.md'
-    - On the Wire: 'objectives/o23.md'
-    - Free Ski: 'objectives/o24.md'
-    - Snowblind Ambush: 'objectives/o25.md'
+    - On the Wire: 'objectives/o24.md'
+    - Free Ski: 'objectives/o25.md'
+    - Snowblind Ambush: 'objectives/o26.md'
 - Extras:
   - Easter Eggs: 'easter_eggs.md'
+  - Counter Hack Crew: 'ch_crew.md'
