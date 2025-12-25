@@ -12,6 +12,6 @@
 
     My family and I love exploring those East Tennessee mountains, and honestly, geocaching teaches you a lot about finding hidden things - useful in both firefighting and hacking.
 
-## Yori
+## Yori Kvitchko
 !!! quote
     Hi! I'm Yori. I was Ed's lost intern back in 2015, but I was found!
