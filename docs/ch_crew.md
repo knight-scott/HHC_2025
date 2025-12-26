@@ -29,3 +29,14 @@
     And yes, finger guns are 100% appropriate for military portraits.
 
     ... We should get dessert soon!
+
+## Eric Pursley
+    Hey, I'm Eric. As you can see, I'm an avid motorcyclist. And I love traveling the world with my wife.
+
+    I enjoy being creative and making things. For example, a cybersecurity tool called Zero-E that I'm quite proud of, and the Baldur's Gate 3 mod called Manaflare. I'm even in the BG3 credits!
+
+    I also make tools, ranges, and HHC worlds for Counter Hack. Yup, including the one you're in right now.
+
+    But most of the time, I'm helping organizations in the real world be more secure. I do a bunch of different kinds of pentesting, but speciailize in network and physical.
+
+    Some advice: stay laser-focused on your goals and don't let the distractions life throws at you lead you astray. That's how I ended up at Counter Hack!
