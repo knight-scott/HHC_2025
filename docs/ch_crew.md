@@ -31,6 +31,7 @@
     ... We should get dessert soon!
 
 ## Eric Pursley
+!!! quote
     Hey, I'm Eric. As you can see, I'm an avid motorcyclist. And I love traveling the world with my wife.
 
     I enjoy being creative and making things. For example, a cybersecurity tool called Zero-E that I'm quite proud of, and the Baldur's Gate 3 mod called Manaflare. I'm even in the BG3 credits!
@@ -40,3 +41,11 @@
     But most of the time, I'm helping organizations in the real world be more secure. I do a bunch of different kinds of pentesting, but speciailize in network and physical.
 
     Some advice: stay laser-focused on your goals and don't let the distractions life throws at you lead you astray. That's how I ended up at Counter Hack!
+
+## Goose Grace
+!!! quote
+    HONK!!! HONK!!!!
+
+## Goose Barry
+!!! quote
+    You want me to say what exactly? Do I really look like someone who says MOOO?
