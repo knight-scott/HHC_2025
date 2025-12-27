@@ -49,3 +49,11 @@
 ## Goose Barry
 !!! quote
     You want me to say what exactly? Do I really look like someone who says MOOO?
+
+## Goose Lucas
+!!! quote
+    (Spanish mode) Hi... welcome to the Dosis Neighborhood! Nice to meet you!
+
+## Goose James
+!!! quote
+    CLUCK CLU... I think I might be losing my mind. All the elves are gone and I'm still hearing voices.
