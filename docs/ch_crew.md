@@ -57,3 +57,15 @@
 ## Goose James
 !!! quote
     CLUCK CLU... I think I might be losing my mind. All the elves are gone and I'm still hearing voices.
+
+## Mark DiVito
+!!! quote
+    I am an avid collector of things of the past. I love old technology. I love how it connects us to the past. Some remind me of my dad, who was an engineer on the Apollo 11 mission and helped develop the rendezvous and altimeter radar on the space craft.
+
+    If you ever get into collecting things like vintage computers, here is a tip. Never forget to remove the RIFA capacitors from vintage computer power supplies when restoring a system. If not they can pop and fill the room with nasty smoke.
+
+    I love vintage computing, it’s the very core of where and when it all began. I still enjoy writing programs in BASIC and have started re-learning Apple II assembly language. I started writing code in 1982 on a Commodore CBM.
+
+    Sometimes it is the people no one can imagine anything of who do the things no one can imagine. - Alan Turing
+
+    You never forget your first 8-bit system.
