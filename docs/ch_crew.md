@@ -69,3 +69,7 @@
     Sometimes it is the people no one can imagine anything of who do the things no one can imagine. - Alan Turing
 
     You never forget your first 8-bit system.
+
+## Maurice Wilson
+!!! quote
+    Hey there! I'm Mo, on loan from the Air Force, and let me tell you - Counter Hack is the best job I have ever had!
