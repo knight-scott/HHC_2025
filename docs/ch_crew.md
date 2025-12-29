@@ -83,3 +83,11 @@
     Photography is my hobby, but the anachronistic sort: before 1900.
 
     Teaching people how to hack and protect systems is my passion.
+
+## Janusz Jasinski
+!!! quote
+    Hello! I'm JJ. I like rock, metal, and punk music. That's all I have to say about that.
+
+    I accept BTC.
+
+    Skeletor is my hero!
