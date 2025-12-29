@@ -73,3 +73,13 @@
 ## Maurice Wilson
 !!! quote
     Hey there! I'm Mo, on loan from the Air Force, and let me tell you - Counter Hack is the best job I have ever had!
+
+## Josh Wright
+!!! quote
+    I'm a teetotling hacker.
+
+    I sleep about 4 hours a night.
+
+    Photography is my hobby, but the anachronistic sort: before 1900.
+
+    Teaching people how to hack and protect systems is my passion.
