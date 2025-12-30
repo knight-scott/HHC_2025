@@ -91,3 +91,13 @@
     I accept BTC.
 
     Skeletor is my hero!
+
+## Paul Beckett
+!!! quote
+    Hey, I’m Paul!
+
+    I’ve been at Counter Hack since 2024 and loving every minute of it.
+
+    I’m a pentester who digs into web, API, and mobile apps, and I’m also a fan of Linux.
+
+    When I’m not hacking away, you can catch me enjoying board games, hiking, or paddle boarding!
