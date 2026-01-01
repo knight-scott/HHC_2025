@@ -101,3 +101,13 @@
     I’m a pentester who digs into web, API, and mobile apps, and I’m also a fan of Linux.
 
     When I’m not hacking away, you can catch me enjoying board games, hiking, or paddle boarding!
+
+## Charlie Goldner
+!!! quote
+    Hello! I'm not JJ. I like music.
+
+    I accept AI tokens.
+
+    I like quantum pancakes.
+
+    I enjoy social engineeering.
