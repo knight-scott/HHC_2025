@@ -111,3 +111,13 @@
     I like quantum pancakes.
 
     I enjoy social engineeering.
+
+## Kevin McFarland
+!!! quote
+    Hello, I'm Kevin (though past friends have referred to me as 'Heavy K'). If you ever hear any one say that philosophy is a useless college degree, don't believe them; it's not. I've arrived where I am at because of it. It just made the path more interesting.
+
+    I have more hobbies than I can keep up with, including Amateur Astronomy, Shortwave Radio, and retro-gaming. Things like backyard observances of distant galaxies, non-internet involved, around the world communications, and those who program for the Atari 2600 still invoke degrees of awe for me.
+
+    One of the most influential books I've read is "Godel, Escher, and Bach" by Douglas Hofstadter. I'm also a bit of a Tolkien fanatic.
+
+    My wife and my daughter are everything; without them, I surely would still be kicking rusty tin cans down the lonely highways of my past.
