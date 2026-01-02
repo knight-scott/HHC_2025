@@ -121,3 +121,19 @@
     One of the most influential books I've read is "Godel, Escher, and Bach" by Douglas Hofstadter. I'm also a bit of a Tolkien fanatic.
 
     My wife and my daughter are everything; without them, I surely would still be kicking rusty tin cans down the lonely highways of my past.
+
+## Thomas Bouve
+!!! quote
+    Hi there, I'm Thomas, but you can call me CraHan if you like.
+
+    What do you mean 'weird accent'? I have no idea why people keep telling me that, but it sounds fine in my head, to be honest.
+
+    Anyway, way back before I joined Counter Hack, I was an avid HHC player just like you! Some of my write-ups even resulted in a couple of wins throughout the years. Definitely check them out if you're looking for some inspiration.
+
+    If you decide to submit your own report, my [Holiday Hack Challenge report template](https://github.com/crahan/HolidayHackChallengeTemplate) might help you save some time as well.
+
+    My t-shirt? You like it? Well, Synthwave, cyberpunk, and even cassette futurism are definitely my kinda jam!
+
+    I also love to tinker, but for some weird reason my drawer of unfinished hacking projects just keeps overflowing. 24 hours in a day simply isn't enough time, I guess.
+
+    Oh... and no matter what Mark or Kevin try to tell you, the Amiga is the absolute best retro computing platform ever made!
