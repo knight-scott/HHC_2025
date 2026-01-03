@@ -137,3 +137,15 @@
     I also love to tinker, but for some weird reason my drawer of unfinished hacking projects just keeps overflowing. 24 hours in a day simply isn't enough time, I guess.
 
     Oh... and no matter what Mark or Kevin try to tell you, the Amiga is the absolute best retro computing platform ever made!
+
+## Chris Davis
+!!! quote 
+    Hi, my name is Chris.
+
+    I like miniature war gaming and painting minis.
+
+    I enjoy open source projects and amateur robotics.
+
+    Hiking and kayaking are my favorite IRL activies.
+
+    I love single player video games with great stoylines.
