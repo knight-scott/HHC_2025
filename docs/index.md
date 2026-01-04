@@ -43,88 +43,88 @@ Act 3:
 ### Orientation
 
 !!! success "Holiday Hack Orientation - :fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o1.md) here.
+    [Orientation](./objectives/o1.md).
 
 ### Act 1
 
 !!! success "It's All About Defang - :fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o2.md) here.
+    [Defang](./objectives/o2.md).
 
 !!! success "Neighborhood Watch Bypass - :fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o3.md) here.
+    [Bypass](./objectives/o3.md).
 
 !!! success "Santa's Gift-Tracking Service Port Mystery - :fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o4.md) here.
+    [Santa's Gift-Tracking](./objectives/o4.md).
 
 !!! success "Visual Networking Thinger - :fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o5.md) here.
+    [Visual Networking](./objectives/o5.md).
 
 !!! success "Visual Firewall Thinger - :fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o6.md) here.
+    [Visual Firewall](./objectives/o6.md).
 
 !!! success "Intro to Nmap - :fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o7.md) here.
+    [Nmap](./objectives/o7.md).
 
 !!! success "Blob Storage Challenge in the Neighborhood - :fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o8.md) here.
+    [Blob Storage](./objectives/o8.md).
 
 !!! success "Spare Key - :fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o9.md) here.
+    [Spare Key](./objectives/o9.md).
 
 !!! success "The Open Door - :fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o10.md) here.
+    [The Open Door](./objectives/o10.md).
 
 !!! success "Owner - :fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o11.md) here.
+    [Owner](./objectives/o11.md).
 
 ### Act 2
 
 !!! success "Retro Recovery - :fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o12.md) here.
+    [Retro](./objectives/o12.md).
 
 !!! success "Mail Detective - :fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o13.md) here.
+    [Detective](./objectives/o13.md).
 
 !!! success "IDORable Bistro - :fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o14.md) here.
+    [IDOR](./objectives/o14.md).
 
 !!! success "Dosis Network Down - :fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o15.md) here.
+    [Network Down](./objectives/o15.md).
 
 !!! success "Rogue Gnome Identity Provider - :fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o16.md) here.
+    [Identity Provider](./objectives/o16.md).
 
 !!! success "Quantgnome Leap - :fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o17.md) here.
+    [Quantgnome Leap](./objectives/o17.md).
 
 !!! success "Going in Reverse - :fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o18.md) here.
+    [Going in Reverse](./objectives/o18.md).
 
 ### Act 3
 
 !!! success "Gnome Tea - :fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o19.md) here.
+    [Gnome Tea](./objectives/o19.md).
 
 !!! success "Hack-a-Gnome - :fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o20.md) here.
+    [Hack-a-Gnome](./objectives/o20.md).
 
 !!! success "Snowcat RCE & Priv Esc - :fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o21.md) here.
+    [Command Injection](./objectives/o21.md).
 
 !!! success "Schrödinger's Scope - :fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o22.md) here.
+    [Scope](./objectives/o22.md).
 
 !!! success "Find and Shutdown Frosty's Snowglobe Machine - :fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake::fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o23.md) here.
+    [Frosty's Snowglobe Machine](./objectives/o23.md).
 
 !!! success "On the Wire - :fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-regular-snowflake:"
-    Insert [your answer](./objectives/o24.md) here.
+    [On the Wire](./objectives/o24.md).
 
 !!! success "Free Ski - :fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }"
-    Insert [your answer](./objectives/o25.md) here.
+    [Ski Game](./objectives/o25.md).
 
 !!! success "Snowblind Ambush - :fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }:fontawesome-solid-snowflake:{ .red }"
-    Insert [your answer](./objectives/o26.md) here.
+    [Snowblind](./objectives/o26.md).
 
 ## Conclusion
 
