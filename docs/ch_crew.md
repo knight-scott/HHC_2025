@@ -169,3 +169,13 @@
     One of the most influential books I've read is "Godel, Escher, and Bach" by Douglas Hofstadter. I'm also a bit of a Tolkien fanatic.
 
     My wife and my daughter are everything; without them, I surely would still be kicking rusty tin cans down the lonely highways of my past.
+
+## Evan Booth
+!!! quote
+    Hey, I'm Evan!
+
+    I like to build things.
+
+    All sorts of things.
+
+    If you aren't failing on some front, consider adjusting your difficulty settings.
