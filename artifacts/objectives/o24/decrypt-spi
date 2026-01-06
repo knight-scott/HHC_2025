@@ -1,0 +1,206 @@
+// SPI Protocol Decoder with XOR Decryption
+// Stage 2: Decrypt SPI data using key from Stage 1
+
+class SPIDecoder {
+    constructor(xorKey = "icy") {
+        this.mosiFrames = [];
+        this.sckFrames = [];
+        this.xorKey = xorKey;
+        this.bits = [];
+        this.bytes = [];
+        this.decryptedBytes = [];
+    }
+
+    addFrame(frame) {
+        if (frame.line === 'mosi' && frame.t !== undefined && frame.v !== undefined) {
+            this.mosiFrames.push(frame);
+        } else if ((frame.line === 'sck' || frame.line === 'sclk') && frame.t !== undefined && frame.v !== undefined) {
+            this.sckFrames.push(frame);
+        }
+    }
+
+    decode() {
+        // Sort both arrays by timestamp
+        this.mosiFrames.sort((a, b) => a.t - b.t);
+        this.sckFrames.sort((a, b) => a.t - b.t);
+        
+        console.log(`MOSI frames: ${this.mosiFrames.length}`);
+        console.log(`SCK frames: ${this.sckFrames.length}`);
+        
+        // Find clock edges and sample MOSI
+        // SPI typically samples on rising edge (0→1) or falling edge (1→0)
+        // We'll try rising edge first (most common)
+        
+        this.sampleOnRisingEdge();
+        
+        if (this.bits.length === 0) {
+            console.log("No bits found on rising edge, trying falling edge...");
+            this.sampleOnFallingEdge();
+        }
+        
+        console.log(`\nDecoded ${this.bits.length} bits`);
+        
+        // Convert bits to bytes
+        this.bytesFromBits();
+        
+        // XOR decrypt
+        this.xorDecrypt();
+        
+        return this.decryptedBytes;
+    }
+
+    sampleOnRisingEdge() {
+        this.bits = [];
+        let mosiIndex = 0;
+        
+        for (let i = 0; i < this.sckFrames.length - 1; i++) {
+            const current = this.sckFrames[i];
+            const next = this.sckFrames[i + 1];
+            
+            // Detect rising edge (0→1)
+            if (current.v === 0 && next.v === 1) {
+                const edgeTime = next.t;
+                
+                // Find MOSI value at this time
+                // Look for the MOSI value that's valid at edgeTime
+                while (mosiIndex < this.mosiFrames.length - 1 && 
+                       this.mosiFrames[mosiIndex + 1].t <= edgeTime) {
+                    mosiIndex++;
+                }
+                
+                if (mosiIndex < this.mosiFrames.length) {
+                    const mosiBit = this.mosiFrames[mosiIndex].v;
+                    this.bits.push(mosiBit);
+                    console.log(`Clock edge at t=${edgeTime}, MOSI=${mosiBit}`);
+                }
+            }
+        }
+    }
+
+    sampleOnFallingEdge() {
+        this.bits = [];
+        let mosiIndex = 0;
+        
+        for (let i = 0; i < this.sckFrames.length - 1; i++) {
+            const current = this.sckFrames[i];
+            const next = this.sckFrames[i + 1];
+            
+            // Detect falling edge (1→0)
+            if (current.v === 1 && next.v === 0) {
+                const edgeTime = next.t;
+                
+                // Find MOSI value at this time
+                while (mosiIndex < this.mosiFrames.length - 1 && 
+                       this.mosiFrames[mosiIndex + 1].t <= edgeTime) {
+                    mosiIndex++;
+                }
+                
+                if (mosiIndex < this.mosiFrames.length) {
+                    const mosiBit = this.mosiFrames[mosiIndex].v;
+                    this.bits.push(mosiBit);
+                }
+            }
+        }
+    }
+
+    bytesFromBits() {
+        // SPI typically sends MSB first (most significant bit first)
+        this.bytes = [];
+        
+        for (let i = 0; i < this.bits.length; i += 8) {
+            if (i + 8 <= this.bits.length) {
+                let byte = 0;
+                for (let j = 0; j < 8; j++) {
+                    // MSB first: first bit is most significant
+                    byte = (byte << 1) | this.bits[i + j];
+                }
+                this.bytes.push(byte);
+            }
+        }
+        
+        console.log(`\n=== ENCRYPTED DATA ===`);
+        console.log(`Decoded ${this.bytes.length} bytes:`);
+        console.log('Hex:', this.bytes.map(b => '0x' + b.toString(16).padStart(2, '0')).join(' '));
+        console.log('Raw bytes:', this.bytes.join(' '));
+        
+        // Try as ASCII (will likely be garbage before decryption)
+        const rawAscii = this.bytes.map(b => (b >= 0x20 && b <= 0x7E) ? String.fromCharCode(b) : '.').join('');
+        console.log('ASCII (encrypted):', rawAscii);
+    }
+
+    xorDecrypt() {
+        console.log(`\n=== XOR DECRYPTION ===`);
+        console.log(`Using key: "${this.xorKey}"`);
+        
+        this.decryptedBytes = [];
+        const keyBytes = this.xorKey.split('').map(c => c.charCodeAt(0));
+        console.log('Key bytes:', keyBytes, `(${keyBytes.map(b => '0x' + b.toString(16)).join(' ')})`);
+        
+        for (let i = 0; i < this.bytes.length; i++) {
+            const keyByte = keyBytes[i % keyBytes.length];
+            const decrypted = this.bytes[i] ^ keyByte;
+            this.decryptedBytes.push(decrypted);
+        }
+        
+        console.log(`\n=== DECRYPTED DATA ===`);
+        console.log('Hex:', this.decryptedBytes.map(b => '0x' + b.toString(16).padStart(2, '0')).join(' '));
+        console.log('Dec:', this.decryptedBytes.join(' '));
+        
+        // Display as ASCII
+        const ascii = this.decryptedBytes.map(b => (b >= 0x20 && b <= 0x7E) ? String.fromCharCode(b) : '.').join('');
+        console.log('ASCII:', ascii);
+        
+        // Full text
+        const text = this.decryptedBytes.map(b => String.fromCharCode(b)).join('');
+        console.log('\n=== DECRYPTED MESSAGE ===');
+        console.log(text);
+        
+        return text;
+    }
+
+    reset() {
+        this.mosiFrames = [];
+        this.sckFrames = [];
+        this.bits = [];
+        this.bytes = [];
+        this.decryptedBytes = [];
+    }
+}
+
+// Create decoder instance with the key from Stage 1
+const spiDecoder = new SPIDecoder("icy");
+
+console.log('SPI Decoder Ready!');
+console.log('XOR Key: "icy"');
+console.log('\nInstructions:');
+console.log('1. Collect MOSI and SCK frames from Network tab');
+console.log('2. Add them with: spiDecoder.addFrame(frame)');
+console.log('3. Run: spiDecoder.decode()');
+
+// Auto-capture function
+function startSPIAutoCapture() {
+    const originalWebSocket = window.WebSocket;
+    window.WebSocket = function(...args) {
+        const ws = new originalWebSocket(...args);
+        
+        ws.addEventListener('message', (event) => {
+            try {
+                const data = JSON.parse(event.data);
+                if ((data.line === 'mosi' || data.line === 'sck' || data.line === 'sclk') && 
+                    data.t !== undefined) {
+                    spiDecoder.addFrame(data);
+                }
+            } catch (e) {
+                // Ignore non-JSON messages
+            }
+        });
+        
+        return ws;
+    };
+    
+    console.log('SPI Auto-capture enabled!');
+    console.log('Wait for broadcast cycle, then run: spiDecoder.decode()');
+}
+
+// Uncomment to enable:
+// startSPIAutoCapture();

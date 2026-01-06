@@ -1,0 +1,143 @@
+// 1-Wire Protocol Decoder for SANS HHC '25
+// Paste this into the browser console
+
+class OneWireDecoder {
+    constructor() {
+        this.frames = [];
+        this.bits = [];
+        this.bytes = [];
+    }
+
+    addFrame(frame) {
+        // Skip welcome messages and only process data frames
+        if (frame.t !== undefined && frame.v !== undefined) {
+            this.frames.push(frame);
+        }
+    }
+
+    decode() {
+        // Sort frames by timestamp
+        this.frames.sort((a, b) => a.t - b.t);
+        
+        console.log(`Processing ${this.frames.length} frames...`);
+        
+        // Find falling edges (1→0) and measure low pulse width
+        for (let i = 0; i < this.frames.length - 1; i++) {
+            const current = this.frames[i];
+            const next = this.frames[i + 1];
+            
+            // Look for falling edge (signal goes low)
+            if (current.v === 1 && next.v === 0) {
+                // Find the corresponding rising edge
+                for (let j = i + 1; j < this.frames.length; j++) {
+                    if (this.frames[j].v === 1) {
+                        const lowPulseWidth = this.frames[j].t - next.t;
+                        
+                        // Skip reset pulse (very long, ~480 µs)
+                        if (lowPulseWidth > 400) {
+                            console.log(`Reset pulse detected at t=${next.t}, width=${lowPulseWidth}µs`);
+                            break;
+                        }
+                        
+                        // Skip presence pulse (~150 µs)
+                        if (lowPulseWidth > 100 && lowPulseWidth < 300) {
+                            console.log(`Presence pulse detected at t=${next.t}, width=${lowPulseWidth}µs`);
+                            break;
+                        }
+                        
+                        // Data bits: short pulse = 1, long pulse = 0
+                        // Threshold around 15 µs
+                        if (lowPulseWidth < 15) {
+                            this.bits.push(1);
+                            console.log(`Bit 1 at t=${next.t}, width=${lowPulseWidth}µs`);
+                        } else if (lowPulseWidth >= 15 && lowPulseWidth < 100) {
+                            this.bits.push(0);
+                            console.log(`Bit 0 at t=${next.t}, width=${lowPulseWidth}µs`);
+                        }
+                        
+                        break;
+                    }
+                }
+            }
+        }
+        
+        console.log(`\nDecoded ${this.bits.length} bits:`, this.bits.join(''));
+        
+        // Convert bits to bytes (LSB first - typical for 1-Wire)
+        this.bytesFromBits();
+        
+        return this.bytes;
+    }
+
+    bytesFromBits() {
+        // Group bits into bytes (8 bits each), LSB first
+        for (let i = 0; i < this.bits.length; i += 8) {
+            if (i + 8 <= this.bits.length) {
+                let byte = 0;
+                for (let j = 0; j < 8; j++) {
+                    // LSB first: bit 0 is the least significant
+                    byte |= (this.bits[i + j] << j);
+                }
+                this.bytes.push(byte);
+            }
+        }
+        
+        console.log(`\nDecoded ${this.bytes.length} bytes:`);
+        console.log('Hex:', this.bytes.map(b => '0x' + b.toString(16).padStart(2, '0')).join(' '));
+        console.log('Dec:', this.bytes.join(' '));
+        
+        // Try to interpret as ASCII
+        const ascii = this.bytes.map(b => (b >= 0x20 && b <= 0x7E) ? String.fromCharCode(b) : '.').join('');
+        console.log('ASCII:', ascii);
+        
+        // Try full text conversion
+        const text = this.bytes.map(b => String.fromCharCode(b)).join('');
+        console.log('Text:', text);
+    }
+
+    reset() {
+        this.frames = [];
+        this.bits = [];
+        this.bytes = [];
+    }
+}
+
+// Create decoder instance
+const decoder = new OneWireDecoder();
+
+// Monitor WebSocket messages
+// You'll need to find the WebSocket connection and tap into it
+console.log('1-Wire Decoder Ready!');
+console.log('Instructions:');
+console.log('1. Find the WebSocket in Network tab');
+console.log('2. Collect messages and add them with: decoder.addFrame(frame)');
+console.log('3. After collecting all frames, run: decoder.decode()');
+console.log('\nOr use the auto-capture function below...');
+
+// Auto-capture function if WebSocket is accessible
+function startAutoCapture() {
+    // This will intercept WebSocket messages
+    const originalWebSocket = window.WebSocket;
+    window.WebSocket = function(...args) {
+        const ws = new originalWebSocket(...args);
+        
+        ws.addEventListener('message', (event) => {
+            try {
+                const data = JSON.parse(event.data);
+                if (data.line === 'dq' && data.t !== undefined) {
+                    decoder.addFrame(data);
+                }
+            } catch (e) {
+                // Ignore non-JSON messages
+            }
+        });
+        
+        return ws;
+    };
+    
+    console.log('Auto-capture enabled! Decoder will collect frames automatically.');
+    console.log('Wait for a full broadcast cycle (~2 seconds), then run: decoder.decode()');
+}
+
+// Uncomment to enable auto-capture:
+startAutoCapture();

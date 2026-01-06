@@ -1,0 +1,311 @@
+// I²C Protocol Decoder with XOR Decryption
+// Stage 3: Fixed version - better transaction parsing
+
+class I2CDecoder {
+    constructor(xorKey = "bananza", targetAddress = 0x3C) {
+        this.sdaFrames = [];
+        this.sclFrames = [];
+        this.xorKey = xorKey;
+        this.targetAddress = targetAddress;
+        this.transactions = [];
+    }
+
+    addFrame(frame) {
+        if (frame.line === 'sda' && frame.t !== undefined && frame.v !== undefined) {
+            this.sdaFrames.push(frame);
+        } else if (frame.line === 'scl' && frame.t !== undefined && frame.v !== undefined) {
+            this.sclFrames.push(frame);
+        }
+    }
+
+    getSCLState(time) {
+        // Binary search for efficiency
+        for (let i = this.sclFrames.length - 1; i >= 0; i--) {
+            if (this.sclFrames[i].t <= time) {
+                return this.sclFrames[i].v;
+            }
+        }
+        return 0;
+    }
+
+    getSDAState(time) {
+        for (let i = this.sdaFrames.length - 1; i >= 0; i--) {
+            if (this.sdaFrames[i].t <= time) {
+                return this.sdaFrames[i].v;
+            }
+        }
+        return 1;
+    }
+
+    decode() {
+        // Sort by timestamp
+        this.sdaFrames.sort((a, b) => a.t - b.t);
+        this.sclFrames.sort((a, b) => a.t - b.t);
+        
+        console.log(`SDA frames: ${this.sdaFrames.length}`);
+        console.log(`SCL frames: ${this.sclFrames.length}`);
+        
+        // New approach: find all START conditions, then read bits on SCL rising edges
+        this.findTransactionsV2();
+        
+        // Filter and decrypt target device data
+        this.decryptTargetDevice();
+    }
+
+    findTransactionsV2() {
+        console.log('\n=== SCANNING FOR I2C TRANSACTIONS ===');
+        
+        const startTimes = [];
+        const stopTimes = [];
+        
+        // Find all START conditions: SDA falls while SCL is high
+        for (let i = 0; i < this.sdaFrames.length - 1; i++) {
+            const current = this.sdaFrames[i];
+            const next = this.sdaFrames[i + 1];
+            
+            if (current.v === 1 && next.v === 0) {
+                const sclState = this.getSCLState(next.t);
+                if (sclState === 1) {
+                    startTimes.push(next.t);
+                    console.log(`START at t=${next.t}`);
+                }
+            }
+        }
+        
+        // Find all STOP conditions: SDA rises while SCL is high
+        for (let i = 0; i < this.sdaFrames.length - 1; i++) {
+            const current = this.sdaFrames[i];
+            const next = this.sdaFrames[i + 1];
+            
+            if (current.v === 0 && next.v === 1) {
+                const sclState = this.getSCLState(next.t);
+                if (sclState === 1) {
+                    stopTimes.push(next.t);
+                    console.log(`STOP at t=${next.t}`);
+                }
+            }
+        }
+        
+        // Process each transaction between START and STOP
+        for (let i = 0; i < startTimes.length; i++) {
+            const startTime = startTimes[i];
+            const stopTime = stopTimes[i] || (startTimes[i + 1] || startTime + 1000000);
+            
+            console.log(`\nProcessing transaction from t=${startTime} to t=${stopTime}`);
+            
+            const transaction = this.decodeTransactionBetween(startTime, stopTime);
+            if (transaction && transaction.data.length > 0) {
+                this.transactions.push(transaction);
+            }
+        }
+        
+        console.log(`\nFound ${this.transactions.length} valid transactions`);
+    }
+
+    decodeTransactionBetween(startTime, stopTime) {
+        const bits = [];
+        
+        // Find all SCL rising edges between start and stop
+        for (let i = 0; i < this.sclFrames.length - 1; i++) {
+            const current = this.sclFrames[i];
+            const next = this.sclFrames[i + 1];
+            
+            // Rising edge (0→1) on SCL
+            if (current.v === 0 && next.v === 1) {
+                const edgeTime = next.t;
+                
+                // Only process edges within our transaction window
+                if (edgeTime < startTime || edgeTime > stopTime) {
+                    continue;
+                }
+                
+                // Sample SDA at this clock edge
+                const sdaValue = this.getSDAState(edgeTime);
+                bits.push(sdaValue);
+            }
+        }
+        
+        if (bits.length < 9) {
+            console.log(`  Not enough bits: ${bits.length}`);
+            return null;
+        }
+        
+        console.log(`  Decoded ${bits.length} bits`);
+        
+        // Parse transaction
+        return this.parseTransaction(bits);
+    }
+
+    parseTransaction(bits) {
+        // First 8 bits = address byte (7-bit address + R/W)
+        let addressByte = 0;
+        for (let i = 0; i < 8; i++) {
+            addressByte = (addressByte << 1) | bits[i];
+        }
+        
+        const address = addressByte >> 1;
+        const rwBit = addressByte & 0x01;
+        
+        console.log(`  Address: 0x${address.toString(16).toUpperCase().padStart(2, '0')} (byte: 0x${addressByte.toString(16).padStart(2, '0')}), ${rwBit ? 'Read' : 'Write'}`);
+        
+        // Parse data bytes (every 9 bits = 8 data + 1 ACK/NACK)
+        const dataBytes = [];
+        for (let i = 9; i < bits.length; i += 9) {
+            if (i + 8 <= bits.length) {
+                let byte = 0;
+                for (let j = 0; j < 8; j++) {
+                    byte = (byte << 1) | bits[i + j];
+                }
+                dataBytes.push(byte);
+            }
+        }
+        
+        if (dataBytes.length > 0) {
+            console.log(`  Data (${dataBytes.length} bytes): ${dataBytes.map(b => '0x' + b.toString(16).padStart(2, '0')).join(' ')}`);
+        }
+        
+        return {
+            address: address,
+            rwBit: rwBit,
+            addressByte: addressByte,
+            data: dataBytes
+        };
+    }
+
+    decryptTargetDevice() {
+        console.log(`\n=== FILTERING FOR DEVICE 0x${this.targetAddress.toString(16).toUpperCase()} ===`);
+        
+        const targetTransactions = this.transactions.filter(t => t.address === this.targetAddress);
+        
+        if (targetTransactions.length === 0) {
+            console.log(`[ERROR] No transactions found for device 0x${this.targetAddress.toString(16).toUpperCase()}`);
+            console.log('\nAll detected device addresses:');
+            const uniqueAddresses = [...new Set(this.transactions.map(t => t.address))];
+            uniqueAddresses.sort((a, b) => a - b);
+            uniqueAddresses.forEach(addr => {
+                const count = this.transactions.filter(t => t.address === addr).length;
+                console.log(`  0x${addr.toString(16).toUpperCase().padStart(2, '0')} (${count} transactions)`);
+            });
+            return;
+        }
+        
+        console.log(`[SUCCESS] Found ${targetTransactions.length} transactions for target device 0x${this.targetAddress.toString(16).toUpperCase()}`);
+        
+        // Collect all data bytes from target device
+        let allData = [];
+        targetTransactions.forEach((t, idx) => {
+            console.log(`\nTransaction ${idx + 1}:`);
+            console.log(`  Type: ${t.rwBit ? 'Read' : 'Write'}`);
+            console.log(`  Data: ${t.data.map(b => '0x' + b.toString(16).padStart(2, '0')).join(' ')}`);
+            allData = allData.concat(t.data);
+        });
+        
+        if (allData.length === 0) {
+            console.log('\n[ERROR] No data bytes found in transactions');
+            return;
+        }
+        
+        console.log(`\n=== XOR DECRYPTION ===`);
+        console.log(`Total encrypted bytes: ${allData.length}`);
+        console.log(`Encrypted data: ${allData.map(b => '0x' + b.toString(16).padStart(2, '0')).join(' ')}`);
+        console.log(`Using XOR key: "${this.xorKey}"`);
+        
+        const keyBytes = this.xorKey.split('').map(c => c.charCodeAt(0));
+        console.log(`Key bytes: ${keyBytes.map(b => '0x' + b.toString(16).padStart(2, '0')).join(' ')}`);
+        
+        const decrypted = [];
+        for (let i = 0; i < allData.length; i++) {
+            const keyByte = keyBytes[i % keyBytes.length];
+            const decryptedByte = allData[i] ^ keyByte;
+            decrypted.push(decryptedByte);
+        }
+        
+        console.log('\n=== DECRYPTED DATA ===');
+        console.log('Hex:', decrypted.map(b => '0x' + b.toString(16).padStart(2, '0')).join(' '));
+        console.log('Dec:', decrypted.join(' '));
+        
+        const ascii = decrypted.map(b => (b >= 0x20 && b <= 0x7E) ? String.fromCharCode(b) : '.').join('');
+        console.log('ASCII:', ascii);
+        
+        const text = decrypted.map(b => String.fromCharCode(b)).join('');
+        console.log('\n=== DECRYPTED MESSAGE ===');
+        console.log(text);
+        
+        // Parse temperature
+        console.log('\n=== TEMPERATURE DATA ===');
+        this.parseTemperature(decrypted, text);
+        
+        return text;
+    }
+
+    parseTemperature(bytes, text) {
+        // Look for ASCII number in text
+        const numberMatch = text.match(/(-?\d+\.?\d*)/);
+        if (numberMatch) {
+            console.log(`Temperature (from text): ${numberMatch[1]}`);
+        }
+        
+        // Try various binary formats
+        if (bytes.length >= 2) {
+            const temp16BE = (bytes[0] << 8) | bytes[1];
+            const temp16LE = (bytes[1] << 8) | bytes[0];
+            console.log(`16-bit big-endian: ${temp16BE}`);
+            console.log(`16-bit little-endian: ${temp16LE}`);
+        }
+        
+        if (bytes.length >= 1) {
+            console.log(`First byte as integer: ${bytes[0]}`);
+        }
+        
+        // Try signed interpretations
+        if (bytes.length >= 2) {
+            const temp16BESigned = (bytes[0] << 8) | bytes[1];
+            const signedBE = temp16BESigned > 32767 ? temp16BESigned - 65536 : temp16BESigned;
+            console.log(`16-bit big-endian (signed): ${signedBE}`);
+        }
+    }
+
+    reset() {
+        this.sdaFrames = [];
+        this.sclFrames = [];
+        this.transactions = [];
+    }
+}
+
+// Create decoder instance
+const i2cDecoder = new I2CDecoder("bananza", 0x3C);
+
+console.log('I2C Decoder Ready');
+console.log('XOR Key: "bananza"');
+console.log('Target Device: 0x3C');
+console.log('\nInstructions:');
+console.log('1. Run: startI2CAutoCapture()');
+console.log('2. Wait 3-4 seconds for data collection');
+console.log('3. Run: i2cDecoder.decode()');
+
+// Auto-capture function
+function startI2CAutoCapture() {
+    const originalWebSocket = window.WebSocket;
+    window.WebSocket = function(...args) {
+        const ws = new originalWebSocket(...args);
+        
+        ws.addEventListener('message', (event) => {
+            try {
+                const data = JSON.parse(event.data);
+                if ((data.line === 'sda' || data.line === 'scl') && data.t !== undefined) {
+                    i2cDecoder.addFrame(data);
+                }
+            } catch (e) {
+                // Ignore
+            }
+        });
+        
+        return ws;
+    };
+    
+    console.log('[SUCCESS] I2C Auto-capture enabled');
+    console.log('Collecting frames... wait 3-4 seconds, then run: i2cDecoder.decode()');
+}
+
+// Quick start reminder
+console.log('\nQuick start: Run startI2CAutoCapture() now');
