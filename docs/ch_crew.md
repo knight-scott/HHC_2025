@@ -179,3 +179,19 @@
     All sorts of things.
 
     If you aren't failing on some front, consider adjusting your difficulty settings.
+
+## Goose Olivia
+!!! quote 
+    "HONK! Well hello there! Fancy meeting you here in the Dosis Neighborhood.
+
+    You know, it's the strangest thing... I used to just waddle around the Geese Islands going 'BONK' all day long. Random noises, no thoughts, just vibes. But then something changed, and now here I am—speaking, thinking, wondering how I even got here!
+
+## Torkel Opsahl
+!!! quote
+    God dag! My name is Torkel! That literally translates to Thor's Warrior in old Norse.
+
+    If I'm not climbing, snowboarding, or hacking, I'm probably preparing for my next adventure. Did you know all of that is available in Lofoten?
+
+    If you meet me online, I'll probably go by TGC. That's short for Thegrasscutter, because my first job was cutting grass. Exciting, I know.
+
+    I'll teach you a Norwegian word, skorstein, which means chimney.
