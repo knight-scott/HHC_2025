@@ -15,3 +15,4 @@ Examples of reports I've made with this template and their repositories can be f
 | [Snowmaggedon-2024](https://knight-scott.github.io/Snowmaggedon-2024/)         | https://github.com/knight-scott/Snowmaggedon-2024              |
 | [OWASP Top 10](https://knight-scott.github.io/TryHackMe-OWASP-Top-10-WriteUp/) | https://github.com/knight-scott/TryHackMe-OWASP-Top-10-WriteUp |
 | [picoCTF 2025](https://knight-scott.github.io/picoCTF-2025/)                   | https://github.com/knight-scott/picoCTF-2025                   |
+| [SANS Holiday Hack Challenge - 2025](https://knight-scott.github.io/HHC_2025/) | https://github.com/knight-scott/HHC_2025.git                   |
